@@ -8,7 +8,8 @@ class Formateur extends Model
 {
     protected $fillable = [
         'nom',
-        'email'
+        'email',
+        'specialite'
     ];
 
      public function formations()
