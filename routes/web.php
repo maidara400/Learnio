@@ -3,32 +3,39 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-// 1. Page d'accueil
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+*/
+
+// 1. Page d'accueil du projet Learnio
 Route::get('/', function () {
     return view('BIENVENU');
 });
 
-// 2. Dashboard pour les utilisateurs simples (Apprenants)
+// 2. Dashboard standard (pour les apprenants)
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// 3. Gestion du profil (généré par Breeze)
+// 3. Groupe de routes pour le profil utilisateur (Breeze)
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// 4. ZONE SÉCURISÉE POUR L'ADMIN (Ton travail)
+// 4. ZONE ADMIN SÉCURISÉE (Ton travail principal)
+// Cette zone n'est accessible que si l'utilisateur est connecté ET admin
 Route::middleware(['auth', 'admin'])->group(function () {
     
     Route::get('/admin/dashboard', function () {
-        return "Bienvenue Saidina ! Tu es sur l'espace Administrateur sécurisé.";
+        return view('admin-dashboard'); // Charge ta nouvelle page personnalisée
     })->name('admin.dashboard');
 
-    // Vos futures routes de groupe (ex: formations) iront ici
+    // Les membres de ton groupe pourront ajouter leurs routes de gestion ici
 });
 
-// 5. Routes d'authentification (Login, Register, etc.)
+// 5. Chargement des routes d'authentification (login, register, etc.)
 require __DIR__.'/auth.php';
