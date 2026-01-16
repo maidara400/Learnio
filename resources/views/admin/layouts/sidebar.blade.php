@@ -15,14 +15,34 @@
                     <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-airplay"></i></span>
-                            <span class="nxl-mtext">Dashboards</span><span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
+                            <span class="nxl-mtext">Tableau de Bord</span><span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
+                        </a>
+                        <ul class="nxl-submenu">
+                            <li class="nxl-item"><a class="nxl-link" href="index.html">CRM</a></li>
+                            {{-- <li class="nxl-item"><a class="nxl-link" href="analytics.html">Analytics</a></li> --}}
+                        </ul>
+                    </li>
+                    <li class="nxl-item nxl-hasmenu">
+                        <a href="javascript:void(0);" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-airplay"></i></span>
+                            <span class="nxl-mtext">Utilisateurs</span><span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
+                        </a>
+                        <ul class="nxl-submenu">
+                            <li class="nxl-item"><a class="nxl-link" href="{{route('user.create')}}">Ajouter</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{route('user.index')}}">Tout les utlisateurs</a></li>
+                        </ul>
+                    </li>
+                     {{-- <li class="nxl-item nxl-hasmenu">
+                        <a href="javascript:void(0);" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-airplay"></i></span>
+                            <span class="nxl-mtext">Tableau de Bord</span><span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link" href="index.html">CRM</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="analytics.html">Analytics</a></li>
                         </ul>
-                    </li>
-                    <li class="nxl-item nxl-hasmenu">
+                    </li> --}}
+                    {{-- <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-cast"></i></span>
                             <span class="nxl-mtext">Reports</span><span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
@@ -137,8 +157,8 @@
                             <li class="nxl-item"><a class="nxl-link" href="settings-recaptcha.html">reCAPTCHA</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="settings-miscellaneous.html">Miscellaneous</a></li>
                         </ul>
-                    </li>
-                    <li class="nxl-item nxl-hasmenu">
+                    </li> --}}
+                    {{-- <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-power"></i></span>
                             <span class="nxl-mtext">Authentication</span><span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
@@ -205,8 +225,8 @@
                                 </ul>
                             </li>
                         </ul>
-                    </li>
-                    <li class="nxl-item nxl-hasmenu">
+                    </li> --}}
+                    {{-- <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-life-buoy"></i></span>
                             <span class="nxl-mtext">Help Center</span><span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
@@ -216,16 +236,8 @@
                             <li class="nxl-item"><a class="nxl-link" href="help-knowledgebase.html">KnowledgeBase</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="/docs/documentations">Documentations</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                 </ul>
-                {{-- <div class="card text-center">
-                    <div class="card-body">
-                        <i class="feather-sunrise fs-4 text-dark"></i>
-                        <h6 class="mt-4 text-dark fw-bolder">Downloading Center</h6>
-                        <p class="fs-11 my-3 text-dark">Duralux is a production ready CRM to get started up and running easily.</p>
-                        <a href="https://www.themewagon.com/themes/Duralux-admin" target="_blank" class="btn btn-primary text-dark w-100">Download Now</a>
-                    </div>
-                </div> --}}
             </div>
         </div>
     </nav>

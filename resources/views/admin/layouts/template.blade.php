@@ -25,7 +25,17 @@
            @include('admin.layouts.filter')
             <!-- [ page-header ] end -->
             <!-- [ Main Content ] start -->
-            <div class="main-content">
+            <div class="main-content min-vh-100">
+                @if(session('success'))
+                    <script>
+                        swal("Succès!", "{{ session('success') }}", "success");
+                    </script>
+                @endif
+                @if(session('error'))
+                    <script>
+                        swal("Erreur!", "{{ session('error') }}", "error");
+                    </script>
+                @endif
                 @yield('content')
             </div>
             <!-- [ Main Content ] end -->
@@ -40,7 +50,7 @@
     <!--! ================================================================ !-->
     <!--! BEGIN: Theme Customizer !-->
     <!--! ================================================================ !-->
-    @include('admin.layouts.customizer')
+         {{-- @include('admin.layouts.customizer') --}}
     <!--! ================================================================ !-->
     <!--! [End] Theme Customizer !-->
     <!--! ================================================================ !-->
