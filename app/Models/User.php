@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Inscription;
+use App\Models\Formation;
 
 class User extends Authenticatable
 {
@@ -22,6 +24,17 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+
+
+      public function inscriptions()
+    {
+        return $this->hasMany(Inscription::class);
+    }
+
+    public function formations()
+    {
+        return $this->belongsToMany(Formation::class, 'inscriptions');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
