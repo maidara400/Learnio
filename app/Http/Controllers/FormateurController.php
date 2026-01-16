@@ -2,42 +2,90 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Formateur;
 use Illuminate\Http\Request;
+use App\Models\Formateur; // Import du modèle (notez le F majuscule)
 
 class FormateurController extends Controller
 {
-    public function index()
-    {
-        $formateurs = Formateur::all();
-        return view('formateurs.index', compact('formateurs'));
+    // Afficher la liste des formateurs
+    public function index(){
+    $formateurs = Formateur::paginate(10); // ← Changé de all() à paginate()
+    return view('formateur.index', compact('formateurs'));
+}
+    // Afficher le formulaire de création
+    public function create(){
+        return view('formateur.create');
     }
+    
+    // Enregistrer un nouveau formateur
+    public function store(Request $request){
+        // Validation
+        $request->validate([
+            'nom' => 'required',
+            'prenom' => 'required',
+            'email' => 'required|email|unique:formateurs,email', // Note: "formateurs" au pluriel
+            'specialite' => 'required',
+        ]);
 
-    public function create()
-    {
-        return view('formateurs.create');
+        // Enregistrement
+        Formateur::create([
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'email' => $request->email,
+            'specialite' => $request->specialite,
+        ]);
+
+        // Redirection
+        return redirect()->route('formateurs.index')
+            ->with('success', 'Formateur ajouté avec succès');
     }
-
-    public function store(Request $request)
-    {
-        Formateur::create($request->all());
-        return redirect()->route('formateurs.index');
+    
+    // Afficher les détails d'un formateur
+    public function show($id){
+        $formateur = Formateur::findOrFail($id); // Trouve ou erreur 404
+        return view('formateurs.show', compact('formateur'));
     }
-
-    public function edit(Formateur $formateur)
-    {
+    
+    // Afficher le formulaire de modification
+    public function edit($id){
+        $formateur = Formateur::findOrFail($id);
         return view('formateurs.edit', compact('formateur'));
     }
+    
+    // Mettre à jour un formateur
+    public function update(Request $request, $id){
+        // Trouver le formateur
+        $formateur = Formateur::findOrFail($id);
+        
+        // Validation (email unique sauf pour l'enregistrement actuel)
+        $request->validate([
+            'nom' => 'required',
+            'prenom' => 'required',
+            'email' => 'required|email|unique:formateur,email,' . $id,
+            'specialite' => 'required',
+        ]);
 
-    public function update(Request $request, Formateur $formateur)
-    {
-        $formateur->update($request->all());
-        return redirect()->route('formateurs.index');
+        // Mise à jour
+        $formateur->update([
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'email' => $request->email,
+            'specialite' => $request->specialite,
+        ]);
+
+        // Redirection
+        return redirect()->route('formateurs.index')
+            ->with('success', 'Formateur modifié avec succès');
     }
-
-    public function destroy(Formateur $formateur)
-    {
+    
+    // Supprimer un formateur
+    public function destroy($id){
+        // Trouver et supprimer
+        $formateur = Formateur::findOrFail($id);
         $formateur->delete();
-        return redirect()->route('formateurs.index');
+
+        // Redirection
+        return redirect()->route('formateurs.index')
+            ->with('success', 'Formateur supprimé avec succès');
     }
 }

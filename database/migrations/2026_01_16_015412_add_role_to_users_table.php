@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('formateur', function (Blueprint $table) {
-        $table->id();
-        $table->string('nom');
-        $table->string('prenom');
-        $table->string('email')->unique();
-        $table->string('specialite');
-        $table->timestamps();
-    });
+        Schema::table('users', function (Blueprint $table) {
+            //
+            $table->string('role')->default('user');
+        });
     }
 
     /**
@@ -26,6 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('formateur');
+        Schema::table('users', function (Blueprint $table) {
+            //
+            $table->dropColumn('role');
+        });
     }
 };
