@@ -31,6 +31,17 @@
                             <li class="nxl-item"><a class="nxl-link" href="{{route('user.create')}}">Ajouter</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="{{route('user.index')}}">Tout les utlisateurs</a></li>
                         </ul>
+
+                    </li>
+                    <li class="nxl-item nxl-hasmenu">
+                        <a href="javascript:void(0);" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-airplay"></i></span>
+                            <span class="nxl-mtext">Formateurs</span><span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
+                        </a>
+                        <ul class="nxl-submenu">
+                            <li class="nxl-item"><a class="nxl-link" href="{{route('formateur.create')}}">Ajouter</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{route('formateur.index')}}">Tout les Formateurs</a></li>
+                        </ul>
                     </li>
                      {{-- <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
