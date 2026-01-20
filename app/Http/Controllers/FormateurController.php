@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Formateur;
 use App\Http\Requests\FormateurRequest;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class FormateurController extends Controller
 {
@@ -45,6 +47,12 @@ class FormateurController extends Controller
         $data = $request->validated();
         $data['specialite'] = $specialite[$request->specialite];
         Formateur::create($data);
+         User::create([
+        'name' => $request->nom,
+        'email' => $request->email,
+        'password' => Hash::make(0000),
+        'role' => 'formateur',
+    ]);
         return redirect()->route('formateur.create')->with('success', 'Formateur créé avec succès.');   
 
     }
@@ -102,6 +110,9 @@ class FormateurController extends Controller
         //
         $formateur = Formateur::findOrFail($id);
         $formateur->delete();
+        if (User::where('email', $formateur->email)->exists()) {
+            User::where('email', $formateur->email)->delete();
+        }
         return redirect()->route('formateur.index')->with('success', 'Formateur supprimé avec succès.');    
     }
 }

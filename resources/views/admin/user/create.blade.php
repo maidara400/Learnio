@@ -12,7 +12,7 @@
                     <div class="card-body p-sm-5 text-center">
                         <h2 class="fs-20 fw-bolder mb-4">Inscription</h2>
                         <h4 class="fs-13 fw-bold mb-2">Inscrire un nouvel utilisateur</h4>
-                        <p class="fs-12 fw-medium text-muted">Thank you for get back <strong>Nelel</strong> web applications, let's access our the best recommendation for you.</p>
+                        {{-- <p class="fs-12 fw-medium text-muted">Thank you for get back <strong>Nelel</strong> web applications, let's access our the best recommendation for you.</p> --}}
                         <form action="{{ route('user.store') }}" method="post" class="w-100 mt-4 pt-2">
                             @csrf
                             <div class="form-floating mb-4">
